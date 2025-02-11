@@ -21,8 +21,9 @@
     users.users.unix = {
       isNormalUser = true;
       description = "UnixTMDev";
-      extraGroups = [ "wheel" ]; # Gives sudo access
-      shell = pkgs.fish; # You can switch to fish, zsh, etc.
+      extraGroups = [ "wheel" ];
+      shell = pkgs.fish;
+      password = "password"; # Change after login
     };
 
     environment.sessionVariables = rec {

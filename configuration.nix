@@ -101,7 +101,7 @@
 
     # Configure the bootloader (Grub, by default)
     boot.loader.grub.enable = true;
-    boot.loader.grub.device = "/dev/sda"; # Change this to your actual disk (e.g., /dev/sda)
+    boot.loader.grub.device = "/dev/sda"; # Change before baremetal time
 
     hardware.pulseaudio.enable = false;
 

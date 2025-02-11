@@ -3,7 +3,6 @@ let
     mod = "Mod4";
 in {
     home = {
-	pkgs.config.allowUnfree = true;
         packages = with pkgs; [
             # Pentesting
             wireshark
@@ -20,7 +19,7 @@ in {
             tailscale
             syncthing
             vlc
-            discord
+        #    discord
         ];
 
         username = "unix";

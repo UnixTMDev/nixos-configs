@@ -3,6 +3,7 @@ let
     mod = "Mod4";
 in {
     home = {
+	pkgs.config.allowUnfree = true;
         packages = with pkgs; [
             # Pentesting
             wireshark

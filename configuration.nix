@@ -12,8 +12,8 @@
     networking.networkmanager.enable = true;
 
     # Set your system timezone
-    time.timeZone = "America/Los_Angeles";  # Change this to your timezone
-
+    time.timeZone = "America/Los_Angeles";
+    
     # Enable the OpenSSH daemon
     services.openssh.enable = true;
 

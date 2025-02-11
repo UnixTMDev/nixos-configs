@@ -9,8 +9,6 @@
     # Set hostname
     networking.hostName = "unix-nixos";
 
-    virtualisation.vmware.guest.enable = true; 
-
     # Enable networking
     networking.networkmanager.enable = true;
 

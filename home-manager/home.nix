@@ -30,7 +30,15 @@ in {
     };
     xsession.windowManager.i3 = {
         enable = true;
+        extraConfig = ''
+        workspace "1" output DP-0
+        workspace "2" output DP-2
+        '';
         config = {
+            startup = [
+                { command = "exec /home/unix/displays.sh"; }
+                { command = "xrandr --output DP-0 --left-of DP-2"; notification = false; }
+            ];
             modifier = mod;
             keybindings = lib.mkOptionDefault {
                 "${mod}+t" = "exec ${pkgs.firefox}/bin/firefox";

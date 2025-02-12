@@ -28,6 +28,8 @@ in {
             syncthing
             vlc
             discord
+            prusa-slicer
+            super-slicer
 
             tmux
             prismlauncher
@@ -65,6 +67,7 @@ in {
                 { command = "${pkgs.steam}/bin/steam"; } # Funny joke about Helldivers 2 here.
                 { command = "~/nixos-configs/home-manager/btop.sh"; } # I like to look at btop on my other monitor.
                 { command = "xrandr --output DP-0 --left-of DP-2"; notification = false; }
+                { command = "setxkbmap -option compose:caps"; notification = false; }
             ];
             modifier = mod;
             keybindings = lib.mkOptionDefault {

@@ -78,7 +78,7 @@ in {
     };
     
     programs.i3status = {
-        enabled = true;
+        enable = true;
         general = {
             colors = true;
             color_good = "#e0e0e0";

@@ -136,6 +136,7 @@
     system.stateVersion = "23.11"; # Change this to match your NixOS install version
 
     # "Gaming Stuff (Because You Will Eventually Do It)"
+    # Day 1. Immediately is when I did it.
     programs.steam.enable = true;
     hardware.graphics.enable = true;
     programs.fish.enable = true;

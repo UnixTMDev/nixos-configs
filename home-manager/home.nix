@@ -45,7 +45,7 @@ in {
 
     xresources = {
         properties = {
-            "Xcursor.size" = 48;
+            "Xcursor.size" = 38;
         };
     };
 

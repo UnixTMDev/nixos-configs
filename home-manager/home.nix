@@ -17,9 +17,13 @@ in {
             vscodium
             firefox
             tailscale
+            ktailctl
             syncthing
             vlc
         #    discord
+
+            tmux
+            prismlauncher
         ];
 
         username = "unix";
@@ -36,7 +40,7 @@ in {
         '';
         config = {
             startup = [
-                { command = "exec /home/unix/displays.sh"; }
+                # { command = "/home/unix/displays.sh"; }
                 { command = "xrandr --output DP-0 --left-of DP-2"; notification = false; }
             ];
             modifier = mod;
@@ -62,5 +66,10 @@ in {
             size = 20;
             name = "DejaVu Sans";
         };
+    };
+    programs.tmux = {
+        enable = true;
+        clock24 = true;
+        prefix = "C-space";
     };
 }

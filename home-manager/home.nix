@@ -50,7 +50,10 @@ in {
         '';
         config = {
             startup = [
-                # { command = "/home/unix/displays.sh"; }
+                { command = "${pkgs.firefox}/bin/firefox"; } # It's Firefox, why wouldn't I want it on startup?
+                { command = "${pkgs.discord}/bin/discord"; } # I *do* have friends, contrary to how it seems.
+                { command = "${pkgs.steam}/bin/steam"; } # Funny joke about Helldivers 2 here.
+                { command = "${pkgs.kitty}/bin/kitty btop"; } # I like to look at btop on my other monitor.
                 { command = "xrandr --output DP-0 --left-of DP-2"; notification = false; }
             ];
             modifier = mod;

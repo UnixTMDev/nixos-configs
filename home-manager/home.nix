@@ -2,6 +2,13 @@
 let
     mod = "Mod4";
 in {
+    nixpkgs = {
+        config = {
+            allowUnfree = true;
+            allowUnfreePredicate = (_: true);
+        };
+    };
+
     home = {
         packages = with pkgs; [
             # Pentesting

@@ -31,6 +31,8 @@ in {
 
             tmux
             prismlauncher
+            playerctl
+            pulseaudio
         ];
 
         username = "unix";
@@ -53,6 +55,11 @@ in {
             ];
             modifier = mod;
             keybindings = lib.mkOptionDefault {
+                #XF86AudioRaiseVolume/XF86AudioLowerVolume
+                "XF86AudioRaiseVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ +5%";
+                "XF86AudioLowerVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ -5%";
+                "XF86AudioMute" = "exec pactl set-sink-mute @DEFAULT_SINK@ toggle";
+                "XF86AudioPlay" = "exec playerctl play-pause";
                 "${mod}+t" = "exec ${pkgs.firefox}/bin/firefox";
                 # Focus
                 "${mod}+j" = "focus left";
@@ -79,29 +86,23 @@ in {
     
     programs.i3status = {
         enable = true;
+        enableDefault = false;
         general = {
             colors = true;
-            color_good = "#e0e0e0";
-            color_degraded = "#d7ae00";
-            color_bad = "#f69d6a";
+            color_good = "#38f561";
+            color_degraded = "#f5d938";
+            color_bad = "#c71e18";
             interval = 1;
         };
         modules = {
-          "ethernet eth0" = {
+          "ethernet _first_" = {
               position = 1;
               settings = {
                   format_up = "E: %ip (%speed)";
                   format_down = "E: down";
               };
           };
-          "volume master" = {
-              position = 9;
-              settings = {
-                format = "♪ %volume";
-                format_muted = "♪ muted (%volume)";
-                device = "pulse";
-              };
-          };
+          
           "disk /" = {
               position = 2;
               settings = {
@@ -121,9 +122,17 @@ in {
               };
           };
           "tztime local" = {
-              position = 10;
+              position = 5;
               settings = {
                   format = "%Y-%m-%d %H:%M:%S";
+              };
+          };
+          "volume master" = {
+              position = 6;
+              settings = {
+                format = "♪ %volume";
+                format_muted = "♪ muted (%volume)";
+                device = "pulse";
               };
           };
         };

@@ -49,7 +49,7 @@ in {
         workspace "2" output DP-2
 
         assign [class="firefox"] "2"
-        assign [name="btop"] "2"
+        assign [title="btop"] "2"
         assign [class="discord"] "3"
         assign [class="steam"] "3"
         '';

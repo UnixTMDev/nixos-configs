@@ -3,7 +3,7 @@
 {
       imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+      /etc/nixos/hardware-configuration.nix
     ];
     # Set hostname
     networking.hostName = "unix-nixos";
@@ -16,6 +16,8 @@
     
     # Enable the OpenSSH daemon
     services.openssh.enable = true;
+
+
 
     # Define a user
     users.users.unix = {
@@ -44,10 +46,11 @@
       home-manager
 
       python3
-      python3-pip
+      python312Packages.pip
     # CLI tools
       vim
       git
+      gh
       wget
       curl
       htop
@@ -68,10 +71,24 @@
       feh # For setting wallpapers
       picom # Compositor for transparency/effects
       lxappearance # GTK theme config
-      pavucontrol # Audio control (because you *will* need it)
+      pulsemixer
       xorg.xrandr # Display settings
       kitty
     ];
+
+    fileSystems."/mnt/windows" =
+    { device = "/dev/disk/by-uuid/8C3A73623A73486A";
+      fsType = "ntfs";
+      options = [ "umask=0000" "exec" "uid=1000" ];
+    };
+
+    fileSystems."/mnt/nvme" =
+    { device = "/dev/disk/by-uuid/2C9E6B849E6B4604";
+      fsType = "ntfs";
+      options = [ "umask=0000" "exec" "uid=1000" ];
+    };
+
+    services.tailscale.enable = true;
 
     programs.nix-ld.enable = true;
 
@@ -81,13 +98,13 @@
     ];
 
     # Leave commented out until baremetal is used. Please.
-    #services.xserver.videoDrivers = [ "nvidia" ];
-    #hardware.nvidia = {
-    #  modesetting.enable = true;
-    #  powerManagement.enable = true;
-    #  open = false; # Change to true if you want the open-source driver
-    #  nvidiaSettings = true; # Installs the NVIDIA settings GUI
-    #};
+    services.xserver.videoDrivers = [ "nvidia" ];
+    hardware.nvidia = {
+      modesetting.enable = true;
+      powerManagement.enable = true;
+      open = false; # Change to true if you want the open-source driver
+      nvidiaSettings = true; # Installs the NVIDIA settings GUI
+    };
 
     networking.firewall.enable = false;
 
@@ -98,8 +115,7 @@
     nixpkgs.config.allowUnfree = true;
 
     # Configure the bootloader (Grub, by default)
-    boot.loader.grub.enable = true;
-    boot.loader.grub.device = "/dev/sda"; # Change before baremetal time
+    boot.loader.systemd-boot.enable = true;
 
     hardware.pulseaudio.enable = false;
 

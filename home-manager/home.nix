@@ -20,7 +20,7 @@ in {
             ktailctl
             syncthing
             vlc
-        #    discord
+            discord
 
             tmux
             prismlauncher
@@ -32,6 +32,7 @@ in {
         #Don't change this or something idk.
         stateVersion = "23.11";
     };
+
     xsession.windowManager.i3 = {
         enable = true;
         extraConfig = ''
@@ -59,6 +60,7 @@ in {
             };
         };
     };
+
     programs.kitty = {
         enable = true;
         font = {
@@ -67,6 +69,49 @@ in {
             name = "DejaVu Sans";
         };
     };
+
+    programs.i3status.modules = {
+      "ethernet eth0" = {
+          position = 1;
+          settings = {
+              format_up = "E: %ip (%speed)";
+              format_down = "E: down";
+          };
+      };
+      "volume master" = {
+          position = 9;
+          settings = {
+            format = "♪ %volume";
+            format_muted = "♪ muted (%volume)";
+            device = "pulse";
+          };
+      };
+      "disk /" = {
+          position = 2;
+          settings = {
+            format = "ROOT: %avail (%percentage_avail)";
+          };
+      };
+      "cpu_usage" = {
+          position = 3;
+          settings = {
+              format = "CPU: %usage"
+          };
+      };
+      "memory" = {
+          position = 4;
+          settings = {
+              format = "RAM: %used/%total (%used)"
+          };
+      };
+      "tztime local" = {
+          position = 10;
+          settings = {
+              format = "%Y-%m-%d %H:%M:%S"
+          };
+      };
+    };
+
     programs.tmux = {
         enable = true;
         clock24 = true;

@@ -43,6 +43,12 @@ in {
         stateVersion = "23.11";
     };
 
+    xresources = {
+        properties = {
+            "Xcursor.size" = 48;
+        };
+    };
+
     xsession.windowManager.i3 = {
         enable = true;
         extraConfig = ''

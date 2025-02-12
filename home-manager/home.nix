@@ -34,8 +34,6 @@ in {
             playerctl
             pulseaudio
             wmctrl
-
-            cmatrix
         ];
 
         username = "unix";

@@ -36,6 +36,8 @@ in {
             playerctl
             pulseaudio
             wmctrl
+            
+            ffmpeg
         ];
 
         username = "unix";
@@ -66,6 +68,9 @@ in {
                 { command = "${pkgs.discord}/bin/discord"; } # I *do* have friends, contrary to how it seems.
                 { command = "${pkgs.steam}/bin/steam"; } # Funny joke about Helldivers 2 here.
                 { command = "~/nixos-configs/home-manager/btop.sh"; } # I like to look at btop on my other monitor.
+
+                # WM stuff
+                { command = "${pkgs.feh}/bin/feh --no-fehbg --bg-scale /home/unix/helldivers.png"; }
                 { command = "xrandr --output DP-0 --left-of DP-2"; notification = false; }
                 { command = "setxkbmap -option compose:caps"; notification = false; }
             ];

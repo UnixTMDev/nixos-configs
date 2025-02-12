@@ -31,8 +31,6 @@ in {
             prusa-slicer
             super-slicer
 
-            yt-dlp
-
             tmux
             prismlauncher
             playerctl
@@ -40,7 +38,7 @@ in {
             wmctrl
             
             ffmpeg
-            subtitleedit
+            aegisub
         ];
 
         username = "unix";

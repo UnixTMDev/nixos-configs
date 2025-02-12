@@ -76,47 +76,57 @@ in {
             name = "DejaVu Sans";
         };
     };
-
-    programs.i3status.modules = {
-      "ethernet eth0" = {
-          position = 1;
-          settings = {
-              format_up = "E: %ip (%speed)";
-              format_down = "E: down";
+    
+    programs.i3status = {
+        enabled = true;
+        general = {
+            colors = true;
+            color_good = "#e0e0e0";
+            color_degraded = "#d7ae00";
+            color_bad = "#f69d6a";
+            interval = 1;
+        };
+        modules = {
+          "ethernet eth0" = {
+              position = 1;
+              settings = {
+                  format_up = "E: %ip (%speed)";
+                  format_down = "E: down";
+              };
           };
-      };
-      "volume master" = {
-          position = 9;
-          settings = {
-            format = "♪ %volume";
-            format_muted = "♪ muted (%volume)";
-            device = "pulse";
+          "volume master" = {
+              position = 9;
+              settings = {
+                format = "♪ %volume";
+                format_muted = "♪ muted (%volume)";
+                device = "pulse";
+              };
           };
-      };
-      "disk /" = {
-          position = 2;
-          settings = {
-            format = "ROOT: %avail (%percentage_avail)";
+          "disk /" = {
+              position = 2;
+              settings = {
+                format = "ROOT: %avail (%percentage_avail)";
+              };
           };
-      };
-      "cpu_usage" = {
-          position = 3;
-          settings = {
-              format = "CPU: %usage";
+          "cpu_usage" = {
+              position = 3;
+              settings = {
+                  format = "CPU: %usage";
+              };
           };
-      };
-      "memory" = {
-          position = 4;
-          settings = {
-              format = "RAM: %used/%total (%used)";
+          "memory" = {
+              position = 4;
+              settings = {
+                  format = "RAM: %used/%total (%used)";
+              };
           };
-      };
-      "tztime local" = {
-          position = 10;
-          settings = {
-              format = "%Y-%m-%d %H:%M:%S";
+          "tztime local" = {
+              position = 10;
+              settings = {
+                  format = "%Y-%m-%d %H:%M:%S";
+              };
           };
-      };
+        };
     };
 
     programs.tmux = {

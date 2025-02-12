@@ -95,19 +95,19 @@ in {
       "cpu_usage" = {
           position = 3;
           settings = {
-              format = "CPU: %usage"
+              format = "CPU: %usage";
           };
       };
       "memory" = {
           position = 4;
           settings = {
-              format = "RAM: %used/%total (%used)"
+              format = "RAM: %used/%total (%used)";
           };
       };
       "tztime local" = {
           position = 10;
           settings = {
-              format = "%Y-%m-%d %H:%M:%S"
+              format = "%Y-%m-%d %H:%M:%S";
           };
       };
     };

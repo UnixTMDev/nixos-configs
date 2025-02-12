@@ -118,7 +118,7 @@ in {
           "memory" = {
               position = 4;
               settings = {
-                  format = "RAM: %used/%total (%used)";
+                  format = "RAM: %used/%total (%percentage_used)";
               };
           };
           "tztime local" = {

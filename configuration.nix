@@ -73,6 +73,7 @@
       lxappearance # GTK theme config
       pulsemixer
       xorg.xrandr # Display settings
+      xorg.xev
       kitty
     ];
 
@@ -121,7 +122,7 @@
 
     # Enable X11 and i3
     services.xserver.enable = true;
-    services.xserver.dpi = 200;
+    services.xserver.dpi = 175;
     services.xserver.windowManager.i3.enable = true;
 
     # Set a login manager (lightdm works well with i3)

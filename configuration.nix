@@ -75,8 +75,10 @@
       xorg.xrandr # Display settings
       xorg.xev
       xorg.setxkbmap
-      nitrogen # For wallpaper stuff
+      feh # For wallpaper stuff
       kitty
+
+      virt-manager-qt
     ];
 
     fileSystems."/mnt/windows" =
@@ -92,6 +94,7 @@
     };
 
     services.tailscale.enable = true;
+    services.syncthing.enable = true;
 
     programs.nix-ld.enable = true;
 

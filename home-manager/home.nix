@@ -31,6 +31,8 @@ in {
             prusa-slicer
             super-slicer
 
+            unityhub
+
             tmux
             prismlauncher
             playerctl
@@ -39,6 +41,8 @@ in {
             
             ffmpeg
             aegisub
+
+            melonDS # Love DS emulation tbh
         ];
 
         username = "unix";

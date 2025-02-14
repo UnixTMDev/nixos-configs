@@ -109,6 +109,16 @@ in {
             name = "DejaVu Sans";
         };
     };
+
+    programs.vim = {
+        enable = true;
+        defaultEditor = true;
+        settings = {
+            tabstop = 4;
+            shiftwidth = 4;
+            number = true;
+        };
+    };
     
     programs.i3status = {
         enable = true;

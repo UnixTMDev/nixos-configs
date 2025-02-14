@@ -78,7 +78,8 @@
       feh # For wallpaper stuff
       kitty
 
-      virt-manager-qt
+      virt-manager
+      qdirstat
     ];
 
     fileSystems."/mnt/windows" =

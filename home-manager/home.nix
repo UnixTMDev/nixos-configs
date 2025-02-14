@@ -117,6 +117,7 @@ in {
             tabstop = 4;
             shiftwidth = 4;
             number = true;
+            mouse = "a";
         };
     };
     

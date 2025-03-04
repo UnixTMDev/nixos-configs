@@ -87,6 +87,7 @@ in {
                 "XF86AudioMute" = "exec pactl set-sink-mute @DEFAULT_SINK@ toggle";
                 "XF86AudioPlay" = "exec playerctl play-pause";
                 "${mod}+t" = "exec ${pkgs.firefox}/bin/firefox";
+                "${mod}+g" = "exec /home/unix/dmenu_with_output.sh";
                 # Focus
                 "${mod}+j" = "focus left";
                 "${mod}+k" = "focus down";
@@ -108,6 +109,7 @@ in {
             size = 20;
             name = "DejaVu Sans";
         };
+        extraConfig = "confirm_os_window_close 0\npaste_actions replace-dangerous-control-codes";
     };
 
     programs.vim = {

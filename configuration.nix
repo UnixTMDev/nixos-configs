@@ -23,7 +23,7 @@
     users.users.unix = {
       isNormalUser = true;
       description = "UnixTMDev";
-      extraGroups = [ "wheel" ];
+      extraGroups = [ "wheel" "dialout" "syncthing" ]; # augh
       shell = pkgs.fish;
       password = "password"; # Change after login
     };
@@ -43,7 +43,46 @@
     };
 
     environment.systemPackages = with pkgs; [
+      ollama
+      tk
+      gcc
+      streamdeck-ui
+      xdotool
+      lsof
+      xclip
+      weather
+
+      lynx
+      v4l2-relayd
+      portaudio
+      espeak
+
+      flitter
+
+      gnumake
+
+      weechat
+      iamb
+
       home-manager
+      rustdesk
+      alsa-utils
+      gnupg
+      zlib
+      openssl_3
+      inetutils
+
+      python312Packages.numpy
+      python312Packages.tkinter
+
+      monero-cli
+      xmrig
+      p2pool
+
+      usbutils
+      minicom
+      dunst
+      p7zip
 
       python3
       python312Packages.pip
@@ -58,10 +97,12 @@
       btop
       unzip
       zip
+      killall
       file
       fish
       bash
       zsh
+      nix-index
 
       #UI
       i3 # The WM itself
@@ -78,15 +119,32 @@
       feh # For wallpaper stuff
       kitty
 
+      gimp
+      arduino-ide
+
+      flatpak
+
+      obs-studio
+
+
+      fuse3
+      appimage-run
+
       virt-manager
       qdirstat
+      blender
     ];
 
-    fileSystems."/mnt/windows" =
-    { device = "/dev/disk/by-uuid/8C3A73623A73486A";
-      fsType = "ntfs";
-      options = [ "umask=0000" "exec" "uid=1000" ];
+    security.sudo = {
+      enable = true;
+      wheelNeedsPassword = false; # "wah wah its insecure" don't care. convenience baby
     };
+
+    #fileSystems."/mnt/windows" =
+    #{ device = "/dev/disk/by-uuid/56B68CF1B68CD343";
+    #  fsType = "ntfs";
+    #  options = [ "umask=0000" "exec" "uid=1000" ];
+    #};
 
     fileSystems."/mnt/nvme" =
     { device = "/dev/disk/by-uuid/2C9E6B849E6B4604";
@@ -94,12 +152,42 @@
       options = [ "umask=0000" "exec" "uid=1000" ];
     };
 
+    services.ollama.enable = true;
+    services.ollama.acceleration = "cuda";
+
+    virtualisation.libvirtd.enable = true;
+    users.groups.libvirtd.members = ["unix"];
+    virtualisation.spiceUSBRedirection.enable = true;
+
+    services.monero.enable = true;
+    services.monero.mining.enable = false;
+    services.monero.extraConfig = ''zmq-pub=tcp://127.0.0.1:18083
+      out-peers=16
+      in-peers=32
+      disable-dns-checkpoints=true
+      enable-dns-blocklist=true
+    '';
+    services.monero.priorityNodes = [ "p2pmd.xmrvsbeast.com:18080" "nodes.hashvault.pro:18080" ];
+
     services.tailscale.enable = true;
+    services.flatpak.enable = true;
     services.syncthing.enable = true;
+
+    xdg.portal.extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
+
+    xdg.portal.enable = true;
 
     programs.nix-ld.enable = true;
 
     programs.nix-ld.libraries = with pkgs; [
+      portaudio
+      ninja
+      meson
+      pkg-config
+      hidapi
+      libusb1
+      opencv
+      libjpeg
       # Add any missing dynamic libraries for unpackaged programs
       # here, NOT in environment.systemPackages
     ];
@@ -145,5 +233,8 @@
     programs.steam.enable = true;
     hardware.graphics.enable = true;
     programs.fish.enable = true;
+
+
+    services.speechd.enable = true;
 
 }

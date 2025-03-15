@@ -1,6 +1,8 @@
 { config, pkgs, lib, ... }:
 
-{
+let
+    unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
+in {
       imports =
     [ # Include the results of the hardware scan.
       /etc/nixos/hardware-configuration.nix
@@ -16,6 +18,7 @@
     
     # Enable the OpenSSH daemon
     services.openssh.enable = true;
+    services.openssh.forwardX11 = true;
 
 
 
@@ -44,16 +47,37 @@
 
     environment.systemPackages = with pkgs; [
       ollama
+      zulu23
+      unstable.firefox
       tk
+      dotnet-sdk
+      wine
+      scrcpy
+      playwright-driver
+      playwright-driver.browsers
+      winetricks
+      mono
+      numlockx
+      logitech-udev-rules
       gcc
-      streamdeck-ui
+      lime3ds
+      input-remapper
+      pciutils
+      xautomation
       xdotool
       lsof
+      solaar
+      cl-wordle
       xclip
       weather
+      xbindkeys
+      xorg.libxcb
+      noisetorch
+
+      android-tools
+      android-studio
 
       lynx
-      v4l2-relayd
       portaudio
       espeak
 
@@ -62,6 +86,7 @@
       gnumake
 
       weechat
+      icu
       iamb
 
       home-manager
@@ -151,15 +176,18 @@
       fsType = "ntfs";
       options = [ "umask=0000" "exec" "uid=1000" ];
     };
+    hardware.logitech.wireless.enable = true;
 
     services.ollama.enable = true;
     services.ollama.acceleration = "cuda";
 
-    virtualisation.libvirtd.enable = true;
-    users.groups.libvirtd.members = ["unix"];
-    virtualisation.spiceUSBRedirection.enable = true;
+    services.input-remapper.enable = true;
 
-    services.monero.enable = true;
+    virtualisation.libvirtd.enable = false;
+    users.groups.libvirtd.members = ["unix"];
+    virtualisation.spiceUSBRedirection.enable = false;
+
+    services.monero.enable = false;
     services.monero.mining.enable = false;
     services.monero.extraConfig = ''zmq-pub=tcp://127.0.0.1:18083
       out-peers=16
@@ -181,9 +209,12 @@
 
     programs.nix-ld.libraries = with pkgs; [
       portaudio
+      icu
       ninja
+      i3
       meson
       pkg-config
+      xorg.libxcb
       hidapi
       libusb1
       opencv

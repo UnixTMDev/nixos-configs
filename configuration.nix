@@ -59,6 +59,7 @@ in {
       mono
       numlockx
       logitech-udev-rules
+      websocat
       gcc
       lime3ds
       input-remapper
